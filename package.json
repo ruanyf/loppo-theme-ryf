@@ -1,0 +1,41 @@
+{
+  "name": "loppo-theme-ryf",
+  "version": "0.1.0",
+  "description": "a theme of Loppo used by Wangdoc",
+  "main": "index.js",
+  "scripts": {
+    "precommit": "npm run build-css && npm run build-js && git add -A",
+    "postversion": "npm run update-bulma",
+    "update-bulma": "npm update bulma && cp -rf ./node_modules/bulma/bulma.sass ./node_modules/bulma/sass .",
+    "clean-css": "rm -rf ./theme/assets/css/*",
+    "build-css": "npm run clean-css && npm run build-sass && npm run build-autoprefix && npm run build-uglify",
+    "build-autoprefix": "postcss --use autoprefixer --map false --output theme/assets/css/app.css theme/assets/css/app.css",
+    "build-sass": "node-sass --output-style expanded --source-map true sass/wangdoc.sass theme/assets/css/app.css",
+    "build-uglify": "cleancss --source-map -o theme/assets/css/app.min.css theme/assets/css/app.css",
+    "build-js": "mkdir -p theme/assets/js && browserify scripts/index.js | uglifyjs -c > theme/assets/js/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "loppo",
+    "theme",
+    "template"
+  ],
+  "homepage": "https://github.com/wangdoc/loppo-theme-ryf",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wangdoc/loppo-theme-ryf.git"
+  },
+  "author": "Ruan Yifeng",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^7.2.1",
+    "browserify": "^14.5.0",
+    "bulma": "^0.6.1",
+    "clean-css-cli": "^4.1.10",
+    "husky": "^0.14.3",
+    "node-sass": "^4.7.2",
+    "postcss-cli": "^4.1.1",
+    "rimraf": "^2.6.2",
+    "uglifyify": "^4.0.5"
+  }
+}

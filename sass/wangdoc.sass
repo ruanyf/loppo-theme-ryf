@@ -1,0 +1,147 @@
+// 1. Import the initial variables
+@import "./utilities/initial-variables"
+
+@import "../bulma"
+@import "./highlight"
+
+/*
+ * main titles
+ */
+.main
+  h1
+    font-size: $size-1
+  h2
+    font-size: $size-2
+  h3
+    font-size: $size-3
+
+/*
+ * article title counter
+ */
+.article .content
+  counter-reset: firstLevelTitle;
+
+.article .content > h2::before
+  counter-increment: firstLevelTitle;
+  content: counter(firstLevelTitle) '. ';
+
+.article .content > h2:only-of-type::before
+  content: '';
+
+.article .content > h2
+  counter-reset: secondLevelTitle;
+
+.article .content > h3::before
+  counter-increment: secondLevelTitle;
+  content: counter(firstLevelTitle) '.' counter(secondLevelTitle) ' ';
+
+.article .content .first-level-collapse
+  display: none;
+
+/*
+ * article-title
+ */
+
+article.content h2 a,
+article.content h3 a
+  display: none
+
+article.content h2:hover a,
+article.content h3:hover a
+  display: inline
+
+article .page-meta
+  margin: 1em auto
+  p
+    color: $grey-light
+    text-align: right
+    font-size: 85%
+    a,
+    a:hover
+      color: $grey-light
+      cursor: default
+
+/* page info */
+.page-info
+  border-top: 1px solid $grey-light
+  padding-top: 1em
+  p
+    color: $grey-light
+    line-height: 2
+
+/*
+ * breadcrumb icon
+ */
+
+.breadcrumb .icon:last-child,
+.breadcrumb .icon:first-child
+  margin-left: 0px
+  margin-right: 0px
+
+/*
+ * previous-next nav
+ */
+.level-previous-next
+  padding: 1em
+  background: $light
+  .level-left, .level-right
+    width: 48%
+    overflow: hidden
+    text-overflow: ellipsis
+
+/*
+ * article-toc
+ */
+.article-toc
+  border: 1px solid #aaa;
+  background-color: #f9f9f9;
+  display: table;
+  padding: 1rem;
+
+.article-toc ul
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+
+.article-toc > ul
+  counter-reset: articleTOCFirstLevel;
+
+.article-toc > ul > li
+  list-style-type: none;
+  counter-reset: articleTOCSecondLevel;
+
+.article-toc > ul > li::before
+  counter-increment: articleTOCFirstLevel;
+  content: counter(articleTOCFirstLevel) '. ';
+
+.article-toc > ul > li > ul > li
+  list-style-type: none;
+
+.article-toc > ul > li > ul > li::before
+  counter-increment: articleTOCSecondLevel;
+  content: counter(articleTOCFirstLevel) '.' counter(articleTOCSecondLevel) ' ';
+
+/* comments */
+#disqus_thread
+  border-top: 1px solid $grey-light
+  padding-top: 1em
+
+/* menu */
+.panel-menu .panel-block,
+.panel-info .panel-block
+  padding: 0.5em 0.75em 0.5em 0em;
+  padding-left: 0em;
+  .menu
+    width: 100%
+  .menu-list
+    a
+      padding-left: 0em;
+      display: flex;
+      word-break: break-all;
+      .menu-list-title
+        width: calc(100% - 1.5rem - 14px - 8px)
+    a.is-active
+      color: $grey-dark
+      background-color: $white-ter
+    li
+      .icon
+        margin-top: -4px;
