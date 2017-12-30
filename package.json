@@ -1,7 +1,7 @@
 {
   "name": "loppo-theme-ryf",
   "version": "0.1.1",
-  "description": "a theme of Loppo used by Wangdoc",
+  "description": "a theme of Loppo used by my person website",
   "main": "index.js",
   "scripts": {
     "precommit": "npm run build-css && npm run build-js && git add -A",
